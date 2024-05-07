@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery.min.js"></script>
+    <!-- css reset -->
+    <link rel="stylesheet" type="text/css" href="static/css/modern-css-reset.css">
     <link rel="stylesheet" href="static/css/a.css">
     <title>Contact</title>
 </head>
@@ -13,7 +15,7 @@
     <div id="container">
         <header>
             <div class="logo">
-                <a href="#"><img src="static/img/rogo.png"></a>
+                <a href="index.html"><img src="static/img/rogo.png"></a>
             </div>
             <div id="hamburger">
                 <div class="icon">
@@ -57,7 +59,9 @@
         <main>
             <div id="contact_form">
                 <h2>CONTACT</h2>
-                <form id="google_form" method="POST">
+                <form
+                    action="https://docs.google.com/forms/u/2/d/e/1FAIpQLSdo0MjJ75M7XVAYwDF97bs9yBCfX5fVjIQ5GjJBmmk9PINNaA/formResponse"
+                    method="POST">
                     <div class="Form">
                         <div class="Form-Item">
                             <p class="Form-Item-Label">お名前</p>
@@ -82,44 +86,30 @@
                 </form>
 
                 <script>
-                    document.querySelector('.submit-btn').addEventListener('click', function (event) {
+                    // POSTリクエストをトリガーするリンクボタン
+                    const submitButton = document.querySelector('.submit-btn');
+
+                    // クリックイベントをリスン
+                    submitButton.addEventListener('click', function (event) {
                         event.preventDefault(); // デフォルトのリンク動作を防ぐ
 
-                        const form = document.querySelector('#google_form');
-                        const formData = new FormData(form); // フォームデータを取得
+                        // フォームを取得
+                        const form = document.querySelector('#contact_form form');
 
-                        // GoogleフォームへのPOSTリクエストを送信
-                        fetch('https://docs.google.com/forms/u/2/d/e/1FAIpQLSdo0MjJ75M7XVAYwDF97bs9yBCfX5fVjIQ5GjJBmmk9PINNaA/formResponse', {
-                            method: 'POST',
-                            body: formData
-                        })
-                            .then(response => {
-                                if (response.ok) {
-                                    // 送信成功の場合、リダイレクト
-                                    window.location.href = '/thanks.html';
-                                } else {
-                                    console.error('フォーム送信失敗');
-                                }
-                            })
-                            .catch(error => {
-                                console.error('エラー:', error);
-                            });
+                        // フォームが存在する場合は、submit()を呼び出してPOSTリクエストを送信
+                        if (form) {
+                            form.submit();
+                        }
                     });
                 </script>
             </div>
         </main>
-        <footer>footer</footer>
+        <footer>
+            <img src="static/img/rogo.png" style="padding: 20px 20%;">
+            <hr>
+            <p>© 2024 Tokimeki+</p>
+        </footer>
     </div>
 </body>
 
 </html>
-
-<!-- https://docs.google.com/forms/u/2/d/e/1FAIpQLSdo0MjJ75M7XVAYwDF97bs9yBCfX5fVjIQ5GjJBmmk9PINNaA/formResponse
-
-1455460110
-
-1527893967
-
-1713908743
-
-1564666479 -->
